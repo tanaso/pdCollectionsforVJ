@@ -1,0 +1,96 @@
+#N canvas 466 25 729 580 12;
+#X obj 295 60 adc~;
+#X obj 444 344 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#N canvas 382 407 450 278 (subpatch) 0;
+#X array lop 100 float 5;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
+#X coords 0 1 99 -1 200 140 1 0 0;
+#X restore 31 218 graph;
+#X obj 387 130 *~ 10;
+#X floatatom 419 86 5 0 0 0 - - - 0;
+#X obj 466 40 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 523 375 lop~ 1000;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array original 100 float 5;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
+#X coords 0 1 99 -1 200 140 1;
+#X restore 31 42 graph;
+#X obj 456 470 tabwrite~ lop;
+#X obj 308 476 tabwrite~ original;
+#X obj 537 269 hsl 128 15 0 3000 0 0 empty empty empty -2 -8 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X floatatom 537 311 6 0 0 0 - - - 0;
+#N canvas 370 183 536 384 speana 0;
+#X obj 37 37 inlet~;
+#X obj 38 62 hip~ 5;
+#X obj 37 85 rfft~;
+#X obj 28 118 *~;
+#X obj 62 119 *~;
+#X obj 42 143 +~;
+#X obj 42 204 /~ 256;
+#X obj 330 275 table \$0~speana 128;
+#X obj 42 245 tabwrite~ \$0~speana;
+#X obj 187 26 loadbang;
+#X obj 156 115 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X obj 156 153 metro 100;
+#X obj 195 70 xticks 0 11.5837 1 \, bounds 0 1 127 0;
+#X obj 195 116 send \$0~speana;
+#X obj 42 171 sqrt~;
+#X obj 329 229 block~ 512;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 0 3 1;
+#X connect 2 1 4 0;
+#X connect 2 1 4 1;
+#X connect 3 0 5 0;
+#X connect 4 0 5 1;
+#X connect 5 0 14 0;
+#X connect 6 0 8 0;
+#X connect 9 0 10 0;
+#X connect 9 0 12 0;
+#X connect 10 0 11 0;
+#X connect 11 0 8 0;
+#X connect 12 0 13 0;
+#X connect 14 0 6 0;
+#X restore 559 434 pd speana;
+#X floatatom 468 157 10 0 0 0 - - - 0;
+#X obj 493 109 hsl 128 15 0 15000 0 0 empty empty empty -2 -8 0 10
+#fcfcfc #000000 #000000 0 1;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array hip 100 float 5;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
+#X coords 0 1 99 -1 200 140 1;
+#X restore 33 401 graph;
+#X obj 572 235 tabwrite~ hip;
+#X obj 465 190 hip~ 5000;
+#X obj 421 392 metro 100;
+#X connect 0 0 3 0;
+#X connect 1 0 18 0;
+#X connect 3 0 6 0;
+#X connect 3 0 9 0;
+#X connect 3 0 17 0;
+#X connect 4 0 3 1;
+#X connect 5 0 4 0;
+#X connect 6 0 8 0;
+#X connect 6 0 12 0;
+#X connect 10 0 11 0;
+#X connect 11 0 6 1;
+#X connect 13 0 17 0;
+#X connect 14 0 13 0;
+#X connect 17 0 16 0;
+#X connect 18 0 8 0;
+#X connect 18 0 9 0;
+#X connect 18 0 16 0;

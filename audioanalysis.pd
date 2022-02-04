@@ -1,0 +1,10 @@
+#N canvas 201 121 450 300 12;
+#X obj 45 96 readsf~;
+#X obj 48 137 dac~;
+#X msg 73 53 1;
+#X msg 129 59 0;
+#X msg 41 24 open /mediaart_practice2021fw.mp3;
+#X connect 0 0 1 0;
+#X connect 2 0 0 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
